@@ -1,0 +1,16 @@
+# Python virtualenvs
+scripts/.venv/
+.venv/
+
+# Generated or runtime data
+nasa-logs/
+kafka_data/
+
+# Hadoop data directories
+hadoop_namenode/
+hadoop_namenode.bak/
+hadoop_datanode/
+
+# Docker compose state (optionally)
+.env
+.docker/

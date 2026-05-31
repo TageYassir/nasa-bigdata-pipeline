@@ -1,0 +1,25 @@
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.1.3-java8
+    container_name: namenode
+    environment:
+      CLUSTER_NAME: nasa-log-cluster
+    ports:
+      - 9870:9870
+      - 9000:9000
+    volumes:
+      - ./hadoop_namenode:/hadoop/dfs/name
+    hostname: namenode
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.1.3-java8
+    container_name: datanode
+    volumes:
+      - ./hadoop_datanode:/hadoop/dfs/data
+    environment:
+      CORE_CONF_fs_defaultFS: hdfs://namenode:9000
+    ports:
+      - 9864:9864
+    depends_on:
+      - namenode
+    hostname: datanode
+  # zookeeper removed — Kafka is running in KRaft mode (no Zookeeper required)
